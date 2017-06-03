@@ -2,6 +2,7 @@ import importlib
 import argparse
 import configparser
 import os
+import traceback
 
 from themachine.core import start_consuming
 from themachine import log
@@ -31,7 +32,7 @@ def main():
         try:
             start_consuming()
         except Exception as e:
-            log.log(log.CRITICAL, 'Worker crashed: %s', e)
+            log.log(log.CRITICAL, 'Worker crashed: %s', traceback.format_exc())
 
 if __name__ == '__main__':
     main()
