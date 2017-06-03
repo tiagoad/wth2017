@@ -41,6 +41,7 @@ mongoengine | _MongoEngine is a Document-Object Mapper (think ORM, but for docum
 Project | Description | URL
 --- | --- | ---
 OpenStack bandit | _Python AST-based static analyzer from OpenStack Security Group_ | https://github.com/openstack/bandit
+pep8 | Python style guide checker | https://pypi.python.org/pypi/pep8
 
 ## Architecture
 

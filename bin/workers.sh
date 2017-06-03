@@ -17,6 +17,7 @@ WORKERS=(
     github.fetch_repos
     github.fetch_repos
     analysis.bandit
+    analysis.pep8
 )
 
 for worker in "${WORKERS[@]}"
