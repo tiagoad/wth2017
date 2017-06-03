@@ -18,17 +18,69 @@ She can be used to compare job candidates, to find good coders, or to brag about
 * _She_ **knows** if you use tabs or spaces
 * _She_ knows everything about your code.
 
+## Goals
+
+- Scalability
+- Reliability
+- Modularity
+
 ## Technology
 
 ### Main infrastructure
 Project | Description | URL
 --- | --- | ---
-redis | key-value store (work queues) | https://redis.io/ 
-mongodb | gathered info storage | https://www.mongodb.com/
-rq | redis job queue | http://python-rq.org/docs/
+RabbitMQ | Work queue / Pub-Sub | https://www.rabbitmq.com/
+mongodb | Database | https://www.mongodb.com/
 
 ### Linting / Vulnerability checking
 Project | Description | URL
 --- | --- | ---
 OpenStack bandit | _Python AST-based static analyzer from OpenStack Security Group_ | https://github.com/openstack/bandit
 brakeman | _A static analysis security vulnerability scanner for Ruby on Rails applications_ | https://github.com/presidentbeef/brakeman
+
+### Others
+
+Project | Description | URL
+--- | --- | ---
+hug | Hug aims to make developing APIs as simple as possible, but no simpler. | https://github.com/timothycrosley/hug
+
+## Architecture
+
+### API
+
+- RESTful
+- Publishes work to the work queue
+- Gets info from the database
+
+### Work queue
+
+- Generic topics describe data that is available
+- Workers have their own queues that are subscribed to each topic (multiplexing)
+
+### Flow
+
+1. The API publishes a github username into the `github.start_user_process` topic
+
+2. The `github.fetch_metadata` workers are subscribed to the `fetch_metadata` queue inside that topic. 
+
+    1. Once work is available, the worker downloads the user meta-data, maps it into a mongoengine object and inserts/updates the data into the database.
+
+    2. Once the metadata has been downloaded, the worker publishes into the `github.fetch_repo` topic with the repository ID
+
+4. The `github.fetch_repos` workers are subscribed to the `fetch_repo` queue inside that topic. 
+
+    1. Once work is available, the workers download the repositories into temporary directories.
+
+    2. After download, the worker publishes into the `github.repo_available` topic with the repository ID
+    
+5. Each of the code analysis workers are subscribed their own queue inside the `github.repo_available`
+
+    1. Once a repository has been downloaded, these workers will check if the repository language matches their analysis capabilities and runs the external tool
+    
+    2. After the tool has run, the report is added to the Repository mapping in the database
+    
+This workflow allows for an unlimited number of workers of any kind, running on any number of machines.
+
+All the technology used (RabbitMQ and mongodb) can be replicated into an unlimited number of servers, providing infinite scalability and containment.
+
+Analysis workers (that depend on external tools) can be run in an isolated, read-only environment to ensure security.
