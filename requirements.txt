@@ -1,0 +1,4 @@
+pika
+PyGitHub
+GitPython
+motor
