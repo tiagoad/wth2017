@@ -40,7 +40,6 @@ mongodb | Database | https://www.mongodb.com/
 Project | Description | URL
 --- | --- | ---
 OpenStack bandit | _Python AST-based static analyzer from OpenStack Security Group_ | https://github.com/openstack/bandit
-brakeman | _A static analysis security vulnerability scanner for Ruby on Rails applications_ | https://github.com/presidentbeef/brakeman
 
 ### Others
 
