@@ -94,3 +94,5 @@ This workflow allows for an unlimited number of workers of any kind, running on 
 All the technology used (RabbitMQ and mongodb) can be replicated into an unlimited number of servers, providing infinite scalability and containment.
 
 Analysis workers (that depend on external tools) can be run in an isolated, read-only environment to ensure security.
+
+![](https://i.imgur.com/YzzUeZw.png)
