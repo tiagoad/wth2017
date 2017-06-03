@@ -1,17 +1,23 @@
 from flask import Flask, request
-from flask_restful import Resource, Api
+from flask_restful import Resource, Api, abort
 
 import json
 from bson import ObjectId
 
 from themachine.db.github import User
+from themachine.core import publish
 
 app = Flask(__name__)
 api = Api(app)
 
 class UserResource(Resource):
+    # PROOF OF CONCEPT
     def get(self, username):
-        user = User.objects.get(username=username)
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            abort(404, message='No such user')
+
         user_dict = user.to_mongo().to_dict()
         del user_dict['_id']
 
@@ -35,5 +41,9 @@ class UserResource(Resource):
 
         return user_dict
 
+    def post(self, username):
+        publish('github.start_user_process', {
+            'username': username
+        })
 
 api.add_resource(UserResource, '/user/<string:username>')
