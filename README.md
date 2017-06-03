@@ -95,4 +95,17 @@ All the technology used (RabbitMQ and mongodb) can be replicated into an unlimit
 
 Analysis workers (that depend on external tools) can be run in an isolated, read-only environment to ensure security.
 
+## TODO
+
+- [x] Task publishing system
+- [x] Database-Object mapping
+- [x] `github.fetch_metadata` worker
+- [x] `github.fetch_repos` worker
+- [x] `analysis.bandit` worker
+- [x] HTTP API
+    - [x] Read user info
+    - [x] Add new job
+- [ ] Web interface
+
 ![](https://i.imgur.com/YzzUeZw.png)
+![](https://i.imgur.com/hXXeCjR.png)
