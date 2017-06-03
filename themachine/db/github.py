@@ -3,6 +3,9 @@ from mongoengine import *
 from themachine.db.analysis import Report
 
 class Repository(Document):
+    """
+    GitHub repository
+    """
     id = IntField(primary_key=True)
 
     name = StringField()
@@ -15,6 +18,9 @@ class Repository(Document):
     reports = ListField(ReferenceField(Report))
 
 class User(Document):
+    """
+    GitHub user
+    """
     username = StringField()
     name = StringField()
     email = StringField()
