@@ -57,6 +57,12 @@ hug | Hug aims to make developing APIs as simple as possible, but no simpler. | 
 - Generic topics describe data that is available
 - Workers have their own queues that are subscribed to each topic (multiplexing)
 
+### Logging
+
+- All logs are published into a `logs` topic in RabbitMQ, and can be processed by several workers at the time.
+
+- Some workers can receive the totality of the logs (for example, the `log.print_logs` prints all logs into the stdout) while others can share log processing for other purposes (by using a common queue bound to that topic)
+
 ### Flow
 
 1. The API publishes a github username into the `github.start_user_process` topic
