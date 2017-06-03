@@ -19,4 +19,4 @@
  
 2. Start workers by running `./bin/workers.sh`
 
-3. Send a test job by running `python ./bin/add_user.py`
+3. Send a test job by running `python ./bin/add_user.py <github user>`

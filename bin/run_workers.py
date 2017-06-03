@@ -1,11 +1,12 @@
-import importlib
 import argparse
 import configparser
+import importlib
 import os
 import traceback
 
-from themachine.core import start_consuming
 from themachine import log
+from themachine.core import start_consuming
+
 
 def main():
     parser = argparse.ArgumentParser()
