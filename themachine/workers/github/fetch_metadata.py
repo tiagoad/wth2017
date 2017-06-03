@@ -7,7 +7,7 @@ import os
 import github
 
 @consumer(topic='github.start_user_process', name='fetch_metadata')
-def fetch_repo(data):
+def fetch_metadata(data):
     log.info('Fetching metadata for GitHub user %s', data['username'])
 
     gh = github.Github(os.getenv('GITHUB_TOKEN'))
