@@ -9,10 +9,11 @@ class User(Document):
 
 class Repository(Document):
     id = IntField(primary_key=True)
+    owner = ReferenceField(User)
 
     name = StringField()
     full_name = StringField()
-    owner = ReferenceField(User)
     language = StringField()
     git_url = StringField()
+
     local_path = StringField()
