@@ -19,8 +19,10 @@ class BanditIssue(Issue):
     test_name = StringField()
 
 class BanditReport(Report):
-    type = 'bandit'
-
     severity_high = IntField()
     severity_medium = IntField()
     severity_low = IntField()
+
+class PEP8Report(Report):
+    stats = StringField()
+

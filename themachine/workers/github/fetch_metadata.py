@@ -8,6 +8,11 @@ import github
 
 @consumer(topic='github.start_user_process', name='fetch_metadata')
 def fetch_metadata(data):
+    """
+    Fetches metadata from a GitHub repository
+
+    :param data:    Dictionary with a github username as the 'username' key
+    """
     log.info('Fetching metadata for GitHub user %s', data['username'])
 
     gh = github.Github(os.getenv('GITHUB_TOKEN'))

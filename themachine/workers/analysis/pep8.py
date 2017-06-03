@@ -7,6 +7,12 @@ from themachine.db.analysis import PEP8Report
 
 @consumer(topic='github.repo_available', name='ppe8')
 def bandit(data):
+    """
+    PEP8 Style checker consumer
+
+    :param data:    Dictionary with a repository id key
+    :return:
+    """
     repo = Repository.objects.get(**data)
 
     # only supports Python

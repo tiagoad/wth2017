@@ -1,10 +1,14 @@
 import argparse
 import configparser
-import importlib
 import os
-import traceback
+
 
 def main():
+    """
+    DEVELOPMENT FUNCTION
+
+    Runs the API server on port 9999
+    """
     parser = argparse.ArgumentParser()
 
     parser.add_argument("config", help="ini file with environment variables")
@@ -20,7 +24,7 @@ def main():
 
     # run api
     from themachine import api
-    api.app.run()
+    api.app.run(port=9999)
 
 if __name__ == '__main__':
     main()

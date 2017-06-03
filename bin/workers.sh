@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+#
+# DEVELOPMENT SCRIPT
+# Runs a list of workers in different processes. The workers are killed once the process exits.
+
 
 # move to project root
 cd "$(dirname "$0")"
@@ -26,5 +30,5 @@ do
     python ./bin/run_workers.py config.ini "$worker" &
 done
 
-# run forever
+# run forever (sleep forever doesn't work on BSD-like systems
 while true; do sleep 86400; done

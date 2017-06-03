@@ -10,6 +10,12 @@ import json
 
 @consumer(topic='github.repo_available', name='bandit')
 def bandit(data):
+    """
+    Openstack Bandit consumer.
+    Processes a repository and inserts the report in the respository database document.
+
+    :param data:    Dictionary with a repository id key
+    """
     repo = Repository.objects.get(**data)
 
     # only supports Python

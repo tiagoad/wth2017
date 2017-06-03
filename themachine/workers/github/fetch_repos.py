@@ -8,6 +8,12 @@ import git
 
 @consumer(topic='github.fetch_repo', name='fetch_repo')
 def fetch_repo(data):
+    """
+    Fetches a repository from github into a temporary directory and stores the
+    path into its 'local_path' parameter.
+
+    :param data:    Dictionary with a repository ID as the 'id' key
+    """
     repo = Repository.objects.get(**data)
 
     # create a temporary directory

@@ -5,6 +5,13 @@ import logging
 import os
 
 def __log(level, message, *args):
+    """
+    Logs a message into the logs.<level> topic
+
+    :param level:   Log level. Should be one of the constants defined in this module
+    :param message: Log message
+    :param args:    Message formatting items
+    """
     frame, filename, line_number, function_name, lines, index = inspect.getouterframes(inspect.currentframe())[2]
     module = inspect.getmodule(frame)
 
@@ -21,16 +28,55 @@ def __log(level, message, *args):
     })
 
 def debug(message, *args):
+    """
+    Sends a DEBUG level message
+
+    :param message: Log message
+    :param args:    Formatting items
+    :return:
+    """
     __log(DEBUG, message, *args)
 
 def info(message, *args):
+    """
+    Sends a INFO level message
+
+    :param message: Log message
+    :param args:    Formatting items
+    :return:
+    """
+
     __log(INFO, message, *args)
 
 def warning(message, *args):
+    """
+    Sends a WARNING level message
+
+    :param message: Log message
+    :param args:    Formatting items
+    :return:
+    """
+
     __log(WARNING, message, *args)
 
 def error(message, *args):
+    """
+    Sends a ERROR level message
+
+    :param message: Log message
+    :param args:    Formatting items
+    :return:
+    """
+
     __log(ERROR, message, *args)
 
 def critical(message, *args):
+    """
+    Sends a CRITICAL level message
+
+    :param message: Log message
+    :param args:    Formatting items
+    :return:
+    """
+
     __log(CRITICAL, message, *args)

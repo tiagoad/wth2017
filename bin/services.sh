@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# DEVELOPMENT SCRIPT
+# Runs a list of dependency services in a tmux window
 
 # tmux session name
 SESSION_NAME=themachine-services

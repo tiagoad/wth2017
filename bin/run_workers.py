@@ -9,6 +9,13 @@ from themachine.core import start_consuming
 
 
 def main():
+    """
+    DEVELOPMENT FUNCTION
+
+    Runs a list of workers on the same thread.
+    The workers are passed as a command line argument.
+    See `python run_workers.py --help` for usage information.
+    """
     parser = argparse.ArgumentParser()
 
     parser.add_argument("config", help="ini file with environment variables")
