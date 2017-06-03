@@ -1,3 +1,6 @@
+# Project-specific
+config.ini
+
 # IntelliJ project files
 .idea
 *.iml
