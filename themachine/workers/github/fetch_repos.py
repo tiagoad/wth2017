@@ -1,12 +1,10 @@
 from themachine.core import consumer, publish
 from themachine import log
 from themachine import util
-import tempfile
 
 from themachine.db.github import Repository
 
 import git
-import os
 
 @consumer(topic='github.fetch_repo', name='fetch_repo')
 def fetch_repo(data):

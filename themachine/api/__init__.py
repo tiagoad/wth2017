@@ -1,11 +1,7 @@
 from flask import Flask, request
 from flask_restful import Resource, Api, abort
 
-import json
-from bson import ObjectId
-
 from themachine.db.github import User
-from themachine.core import publish
 
 app = Flask(__name__)
 api = Api(app)
@@ -42,6 +38,8 @@ class UserResource(Resource):
         return user_dict
 
     def post(self, username):
+        from themachine.core import publish
+
         publish('github.start_user_process', {
             'username': username
         })
