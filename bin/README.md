@@ -7,3 +7,5 @@ These are scripts used for development and debugging
 `workers.sh` - Starts a list of workers in different processes for development
 
 `services.sh` - Starts the service dependencies for the project
+
+`print_logs.sh` - Prints all logs from RabbitHQ into stdout

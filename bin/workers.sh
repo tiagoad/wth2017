@@ -9,19 +9,19 @@ trap 'kill $(jobs -p)' EXIT
 
 # workers to be run, lines can be repeated
 WORKERS=(
+    log.print_logs
     github.fetch_metadata
     github.fetch_repos
     github.fetch_repos
     github.fetch_repos
     github.fetch_repos
     github.fetch_repos
-    log.print_logs
 )
 
 for worker in "${WORKERS[@]}"
 do
-    echo "starting $worker"
-    python ./bin/run_workers.py sample.ini "$worker" &
+    echo "Starting $worker"
+    python ./bin/run_workers.py config.ini "$worker" &
 done
 
 # run forever

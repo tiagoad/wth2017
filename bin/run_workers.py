@@ -20,12 +20,13 @@ def main():
     config.read(args.config)
 
     for worker in args.workers:
+        log.info('Running worker %s' % worker)
+
         for section in config.sections():
             if section == 'GLOBAL' or worker.startswith(section):
                 for key, value in config[section].items():
                     os.environ[key] = value
 
-        log.log(log.INFO, 'Running worker %s' % worker)
         importlib.import_module('themachine.workers.' + worker)
 
     while True:
