@@ -33,7 +33,7 @@ def main():
         try:
             start_consuming()
         except Exception as e:
-            log.log(log.CRITICAL, 'Worker crashed: %s', traceback.format_exc())
+            log.critical('Worker crashed: %s', traceback.format_exc())
 
 if __name__ == '__main__':
     main()

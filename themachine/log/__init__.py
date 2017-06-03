@@ -4,8 +4,8 @@ import inspect
 import logging
 import os
 
-def log(level, message, *args):
-    frame, filename, line_number, function_name, lines, index = inspect.getouterframes(inspect.currentframe())[1]
+def __log(level, message, *args):
+    frame, filename, line_number, function_name, lines, index = inspect.getouterframes(inspect.currentframe())[2]
     module = inspect.getmodule(frame)
 
     publish('logs.%s' % level, {
@@ -21,16 +21,16 @@ def log(level, message, *args):
     })
 
 def debug(message, *args):
-    log(DEBUG, message, *args)
+    __log(DEBUG, message, *args)
 
 def info(message, *args):
-    log(INFO, message, *args)
+    __log(INFO, message, *args)
 
 def warning(message, *args):
-    log(WARNING, message, *args)
+    __log(WARNING, message, *args)
 
 def error(message, *args):
-    log(ERROR, message, *args)
+    __log(ERROR, message, *args)
 
 def critical(message, *args):
-    log(CRITICAL, message, *args)
+    __log(CRITICAL, message, *args)

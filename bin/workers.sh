@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 cd ..
 
 # kill child processes on exit
-trap 'kill $(jobs -p)' EXIT
+trap 'kill -9 $(jobs -p)' EXIT
 
 # workers to be run, lines can be repeated
 WORKERS=(
@@ -16,6 +16,7 @@ WORKERS=(
     github.fetch_repos
     github.fetch_repos
     github.fetch_repos
+    analysis.bandit
 )
 
 for worker in "${WORKERS[@]}"
