@@ -1,15 +1,9 @@
 from mongoengine import *
 
-class User(Document):
-    username = StringField(primary_key=True)
-
-    name = StringField()
-    email = StringField()
-    followers = IntField()
+from themachine.db.analysis import Report
 
 class Repository(Document):
     id = IntField(primary_key=True)
-    owner = ReferenceField(User)
 
     name = StringField()
     full_name = StringField()
@@ -17,3 +11,14 @@ class Repository(Document):
     git_url = StringField()
 
     local_path = StringField()
+
+    reports = ListField(ReferenceField(Report))
+
+class User(Document):
+    username = StringField()
+    name = StringField()
+    email = StringField()
+    followers = IntField()
+
+    repositories = ListField(ReferenceField(Repository))
+

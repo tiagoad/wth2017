@@ -17,7 +17,7 @@ def bandit(data):
     if repo.language != 'Python':
         return
 
-    log.info("Analysing %s's repo %s", repo.owner.username, repo.full_name)
+    log.info("Analysing repo %s", repo.full_name)
 
     # run bandit
     p = util.exec(['bandit', '-r', repo.local_path, '-f', 'json'])
@@ -25,21 +25,22 @@ def bandit(data):
     # get output
     result = json.loads(p.stdout)
 
-    # add report
+    # add output to repo object
     report = BanditReport()
     report.severity_high = result['metrics']['_totals']['SEVERITY.HIGH']
     report.severity_medium = result['metrics']['_totals']['SEVERITY.MEDIUM']
     report.severity_low = result['metrics']['_totals']['SEVERITY.LOW']
-    report.repo = repo
-    report.save()
 
-    # add report issues
+    report.issues = []
     for bndt_issue in result['results']:
         issue = BanditIssue()
-        issue.report = report
         issue.confidence = bndt_issue['issue_confidence']
         issue.severity = bndt_issue['issue_severity']
         issue.test_id = bndt_issue['test_id']
         issue.test_name = bndt_issue['test_name']
         issue.text = bndt_issue['issue_text']
         issue.save()
+        report.issues.append(issue)
+
+    report.save()
+    repo.update(add_to_set__reports=report)

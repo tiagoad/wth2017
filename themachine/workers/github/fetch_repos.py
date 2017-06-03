@@ -16,7 +16,7 @@ def fetch_repo(data):
     tmp_dir = util.tmp_dir('github')
 
     # log
-    log.info("Fetching %s's repo %s to %s", repo.owner.username, repo.full_name, tmp_dir)
+    log.info("Fetching repo %s to %s", repo.full_name, tmp_dir)
 
     # clone the repository to the directory
     git.Repo.clone_from(repo.git_url, tmp_dir)

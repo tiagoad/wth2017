@@ -1,6 +1,6 @@
 import os
-import tempfile
 import subprocess
+import tempfile
 
 def tmp_dir(prefix):
     prefix = prefix if prefix else 'machine_'
@@ -13,3 +13,6 @@ def tmp_dir(prefix):
 
 def exec(args):
     return subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+def load_config(filename):
+    pass

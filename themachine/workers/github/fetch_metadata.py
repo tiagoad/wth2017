@@ -14,6 +14,7 @@ def fetch_metadata(data):
     gh_user = gh.get_user(data['username'])
 
     user = get_or_create(User, username=data['username'])
+    user.username = data['username']
     user.name = gh_user.name
     user.email = gh_user.email
     user.followers = gh_user.followers
@@ -27,7 +28,6 @@ def fetch_metadata(data):
             continue
 
         repo = get_or_create(Repository, id=gh_repo.id)
-        repo.owner = user
         repo.language = gh_repo.language
         repo.git_url = gh_repo.git_url
 
@@ -35,6 +35,7 @@ def fetch_metadata(data):
         repo.full_name = gh_repo.full_name
 
         repo.save()
+        user.update(add_to_set__repositories=repo)
 
         publish('github.fetch_repo', {
             'id': gh_repo.id
