@@ -19,7 +19,13 @@ def fetch_metadata(data):
     user.followers = gh_user.followers
     user.save()
 
-    for gh_repo in gh_user.get_repos(type=os.getenv('GITHUB_REPO_TYPES')):
+    repo_type = os.getenv('GITHUB_REPO_TYPES')
+    log.info('Fetching repositories of type %s' % repo_type)
+
+    for gh_repo in gh_user.get_repos(type=repo_type):
+        if gh_repo.fork and os.getenv('GITHUB_NO_FORKS') == '1':
+            continue
+
         repo = get_or_create(Repository, id=gh_repo.id)
         repo.owner = user
         repo.language = gh_repo.language
