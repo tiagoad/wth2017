@@ -35,6 +35,7 @@ Project | Description | URL
 --- | --- | ---
 RabbitMQ | Work queue / Pub-Sub | https://www.rabbitmq.com/
 mongodb | Database | https://www.mongodb.com/
+mongoengine | _MongoEngine is a Document-Object Mapper (think ORM, but for document databases) for working with MongoDB from Python._ | http://mongoengine.org/
 
 ### Linting / Vulnerability checking
 Project | Description | URL
