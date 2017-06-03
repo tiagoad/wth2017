@@ -41,12 +41,6 @@ Project | Description | URL
 --- | --- | ---
 OpenStack bandit | _Python AST-based static analyzer from OpenStack Security Group_ | https://github.com/openstack/bandit
 
-### Others
-
-Project | Description | URL
---- | --- | ---
-hug | Hug aims to make developing APIs as simple as possible, but no simpler. | https://github.com/timothycrosley/hug
-
 ## Architecture
 
 ### API
