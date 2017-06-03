@@ -24,6 +24,10 @@ She can be used to compare job candidates, to find good coders, or to brag about
 - Reliability
 - Modularity
 
+## Install & Run
+
+Please refer to `DEVELOPMENT.md`
+
 ## Technology
 
 ### Main infrastructure
