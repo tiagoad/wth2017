@@ -1,4 +1,6 @@
 pika
 PyGitHub
 GitPython
-pymongo
+bandit
+mongoengine
+mongoengine_extras
